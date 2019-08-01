@@ -13,5 +13,7 @@ Python学习
 
 - [create.py](Project/create.py)  ——  在用户目录中检测某个目录是否存在，如果不存在，就创建
 
-- [fileinfo.py](Project/fileinfo.py)  ——  展示给定文件的信息
+- [fileinfo.py](Project/fileinfo.py)  ——  展示给定文件的元信息
 
+- [osinfo.py](Project/osinfo.py)  ——  读取当前系统信息
+- 
