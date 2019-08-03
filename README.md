@@ -16,4 +16,6 @@ Python学习
 - [fileinfo.py](Project/fileinfo.py)  ——  展示给定文件的元信息
 
 - [osinfo.py](Project/osinfo.py)  ——  读取当前系统信息
-- 
+
+- [folder_size.py](Project/folder_size.py)  ——  统计给定文件夹的大小
+
