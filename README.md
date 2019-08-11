@@ -19,3 +19,4 @@ Python学习
 
 - [folder_size.py](Project/folder_size.py)  ——  统计给定文件夹的大小
 
+- [dir_test.py](Project/dir_test.py)  ——  检测指定目录是否存在，如果不存在就创建
