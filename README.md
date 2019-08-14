@@ -14,3 +14,5 @@ Python学习
 - [folder_size.py](Project/folder_size.py)  ——  统计给定文件夹的大小
 - [dir_test.py](Project/dir_test.py)  ——  检测指定目录是否存在，如果不存在就创建
 - [myQR](Project/myQR)  ——  生成个性二维码
+- [logs.py](Project/logs.py)  ——  搜索指定目录下所有`*.log`文件，并压缩以日期格式保存
+
