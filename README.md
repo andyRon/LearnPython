@@ -16,3 +16,5 @@ Python学习
 - [myQR](Project/myQR)  ——  生成个性二维码
 - [logs.py](Project/logs/logs.py)  ——  搜索指定目录下所有`*.log`文件，并压缩以日期格式保存
 - [move_file.py](Project/move_file.py)  ——  把过期文件从源目录到目标目录
+- [count_character.py](Project/count_character.py)  ——  统计文本文件中字符出现的次数
+- [count_word.py](Project/count_word.py)  ——  统计文本文件中英文单词出现的次数
