@@ -15,3 +15,4 @@ Python学习
 - [dir_test.py](Project/dir_test.py)  ——  检测指定目录是否存在，如果不存在就创建
 - [myQR](Project/myQR)  ——  生成个性二维码
 - [logs.py](Project/logs/logs.py)  ——  搜索指定目录下所有`*.log`文件，并压缩以日期格式保存
+- [move_file.py](Project/move_file.py)  ——  把过期文件从源目录到目标目录
