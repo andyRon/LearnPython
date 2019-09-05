@@ -561,30 +561,6 @@ $ python -m timeit "'hello'.index('llo')"
 r都表示raw string. 与特殊字符的escape规则有关，一般用在正则表达式里面。
 r和u可以搭配使用，例如ur"abc"。
 
-### Python网络编程
-http://www.runoob.com/python/python-socket.html
-https://docs.python.org/3/library/socket.html
-https://www.amazon.com/Foundations-Python-Network-Programming-Goerzen/dp/1590593715
-
------
-计划
-### python常用标准库和第三方库
-- 标准
-    + itertools 迭代器
-
-###
-__setitem__
-
----------
 
 
-## Python 基础
-
-### IPython是一个python的交互式shell 。
-
-### 查看帮助文档的方法
-- help()
-
-- dir()
-获得该对象的大部分相关属性。
 
