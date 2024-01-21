@@ -54,7 +54,7 @@ manage.py trydjango
 $ python manage.py runserver
 ```
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20190820185402844.png)
+![](images/image-20190820185402844.png)
 
 
 
@@ -72,7 +72,7 @@ $ python manage.py runserver
 
 settings.py**
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20190820185110776.png)
+![](images/image-20190820185110776.png)
 
 
 
@@ -99,7 +99,7 @@ $ python manage.py createsuperuser
 (trydjango) $ python manage.py startapp cart
 ```
 
-![](/Users/andyron/Library/Application Support/typora-user-images/image-20190820193448011.png)
+![](images/image-20190820193448011.png)
 
 要删除Component，直接删除目录就行了
 

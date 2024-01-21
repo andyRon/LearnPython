@@ -121,9 +121,9 @@
 
             def person(name, age, **other):
             print 'name:', name, 'age:', age, 'other:', other
-    
+        
             person('andy', 25, location="shanghai", weight="70")
-    
+        
             kw = {'city': 'Beijing', 'job': 'Engineer'}
             person('Jack', 24, **kw)
 
@@ -133,7 +133,7 @@
         ````python
             def func(a, b, c=0, *args, **kw):
                 print 'a:', a, 'b:', b, 'c:', c, 'args:', args, 'kw:', kw 
-
+        
             func(1, 3, 4, 5, 6, 23)
             func(1, 3, 4, 5, 6, ab=23)
             args = (12, 5, 6, 7)
@@ -210,7 +210,7 @@
 - 返回函数
 - 匿名函数(lambda)
     + 只能有一个表达式，不用写return，返回值就是该表达式的结果
-- 装饰器**
+- 装饰器
     + 在代码运行期间动态增加功能的方式，称之为“装饰器”（Decorator）。
     + `__name__`
 - 偏函数（Partial function）
@@ -228,7 +228,7 @@
             import cStringIO as StringIO
         except ImportError: # 导入失败会捕获到ImportError
             import StringIO
-    
+        
         try:
             import json # python >= 2.6
         except ImportError:
@@ -258,7 +258,7 @@
             sys.path.append()
 
 - 使用__future__
-    
+  
     + Python提供了__future__模块，把下一个新版本的特性导入到当前版本，于是我们就可以在当前版本中测试一些新版本的特性。
 
 ### 6 面向对象编程
@@ -369,10 +369,10 @@
         * `os.mkdir('/Users/michael/testdir')`
         * `os.rmdir('/Users/michael/testdir')`
         * `os.path.split('/Users/michael/testdir/file.txt')` 
-            
+          
             # ('/Users/michael/testdir', 'file.txt')
         * `os.path.splitext('/path/to/file.txt')`
-            
+          
             # ('/path/to/file', '.txt')
         * `os.rename('test.txt', 'test.py')`    对文件重命名
         * `os.remove('test.py')` 
@@ -579,8 +579,8 @@ MDA：Mail Delivery Agent——邮件投递代理
 - Python格式化中如何使用%
 - Python 获得命令行参数  
     脚本名：    sys.argv[0]
-参数1：     sys.argv[1]
-参数2：     sys.argv[2]
+    参数1：     sys.argv[1]
+    参数2：     sys.argv[2]
 - # 字符串匹配
 $ python -m timeit "'hello'.index('llo')"
 1000000 loops, best of 3: 0.214 usec per loop
@@ -592,7 +592,6 @@ $ python -m timeit "'hello'.index('llo')"
 
 r都表示raw string. 与特殊字符的escape规则有关，一般用在正则表达式里面。
 r和u可以搭配使用，例如ur"abc"。
-
 
 
 

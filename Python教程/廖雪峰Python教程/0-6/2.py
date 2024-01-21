@@ -7,8 +7,7 @@ def my_abs(x):
 		return -x
 
 
-
-# print my_abs("A")
+print(my_abs("A"))
 
 import math
 
@@ -41,7 +40,7 @@ def calc(*numbers):
 # print calc(1,2,4,5)
 
 def person(name, age, **other):
-	print 'name:', name, 'age:', age, 'other:', other
+	print('name:', name, 'age:', age, 'other:', other)
 
 # person('andy', 25, location="shanghai", weight="70")
 
@@ -50,7 +49,8 @@ kw = {'city': 'Beijing', 'job': 'Engineer'}
 
 
 def func(a, b, c=0, *args, **kw):
-	print 'a:', a, 'b:', b, 'c:', c, 'args:', args, 'kw:', kw 
+	print('a:', a, 'b:', b, 'c:', c, 'args:', args, 'kw:', kw)
+
 
 # func(1, 3, 4, 5, 6, 23)
 # func(1, 3, 4, 5, 6, ab=23)
@@ -74,7 +74,9 @@ def fact_iter(num, product):
     if num == 1:
         return product
     return fact_iter(num - 1, num * product)
-# print fact(998)
+
+
+print(fact(998))
 
 
 
