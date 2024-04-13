@@ -5,7 +5,9 @@ url = 'http://www.python.org'
 response = urllib.request.urlopen(url)
 # print(response.read().decode('utf8'))
 print(type(response))
-print(response.status)
+# print(response.status)
 print(response.getheaders())
 print(response.getheader('Server'))
+# print(response)
 
+# print(response.debuglevel)

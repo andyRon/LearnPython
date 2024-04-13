@@ -59,27 +59,75 @@ cchardet是字符编码检测库，aiodns是加速DNS的解析库
 
 ### 1.1 HTTP基本原理
 
-#### URI和URL
+#### 1️⃣ URI和URL
 
 
 
-#### НТТР和HTTPS
+URL:
+
+```
+scheme://[username:password@]hostname[:port][/path][;parameters][?query][#fragment]
+```
 
 
 
-#### HTTP请求过程
+#### 2️⃣ НТТР和HTTPS
 
 
 
-#### 请求
+#### 3️⃣ HTTP请求过程
 
 
 
-#### 响应
+#### 4️⃣ 请求
+
+- 请求方法
 
 
 
-#### HTTP 2.0
+- 请求网址
+
+
+
+- 请求头
+
+`Accept`
+
+`Accept-Language`
+
+`Accept-Encoding`
+
+`Host`
+
+`Cookie`
+
+`Referer`
+
+`User-Agent`(UA)
+
+`Content-Type`，也叫互联网媒体类型（Internet Media Type）或者MIME类型，在HTTP协议消息头中，它用来表示具体请求中的媒体类型信息。
+
+- 请求体
+
+
+
+#### 5️⃣ 响应
+
+- 响应状态码
+
+
+
+- 响应头
+
+
+
+- 响应体
+
+
+
+
+
+#### 6️⃣ HTTP 2.0
 
 相比HTTP1.1来说，HTTP2.0变得更快、更简单、更稳定。HTTP2.0在传输层做了很多优化，它的主要目标是通过支持完整的请求与响应复用来减少延迟，并通过有效压缩HTTP请求头字段的方式将协议开销降至最低，同时增加对请求优先级和服务器推送的支持，这些优化一笔勾销了HTTP1.1做传输优化想出的一系列“歪招”。
 
@@ -87,7 +135,7 @@ cchardet是字符编码检测库，aiodns是加速DNS的解析库
 
 因为HTTP2.0内部实现了新的==二进制分帧层==，没法与之前HTTP1x的服务器和客户端兼容，所以直接修改主版本号为2.0。
 
-优化点：
+优化点：🔖
 
 - 二进制分帧层
 - 多路复用
@@ -114,9 +162,13 @@ HTML、CSS 和JavaScript
 
 #### 3 节点树及节点间的关系
 
+![](images/image-20240406224409135.png)
 
+![](images/image-20240406224426302.png)
 
 #### 4 选择器
+
+![选择器](images/选择器.jpeg)
 
 
 
@@ -162,9 +214,9 @@ HTML、CSS 和JavaScript
 
 
 
-#### Python中的多线程和多进程
+#### Python中的多线程和多进程 🔖
 
-GIL全称次GlobalInterpreterLock，意思是全局解释器锁，其设计之初是出于对**数据安全**的考虑。
+GIL全称次Global Interpreter Lock，意思是**全局解释器锁**，其设计之初是出于对**数据安全**的考虑。
 
 在Python多线程下，每个线程的执行方式分如下三步。
 
@@ -174,7 +226,51 @@ GIL全称次GlobalInterpreterLock，意思是全局解释器锁，其设计之�
 
 
 
+Python的多进程相比多线程，运行效率在多核情况下比单核会有成倍提升。
+
+[Python爬虫进阶五之多线程的用法](https://cuiqingcai.com/3325.html)
+
+[Python爬虫进阶六之多进程的用法](https://cuiqingcai.com/3335.html)
+
+
+
 ## 2 基本库的使用
 
+
+
 ### 2.1 urllib
+
+urllib包括四个模块：
+
+- request：这是最基本的HTTP 请求模块，可以模拟请求的发送。就像在浏览器里输人网址然后按下回车一样，只需要给库方法传入URL 以及额外的参数，就可以模拟实现发送请求的过程了。
+
+- error：异常处理模块。如果出现请求异常，那么我们可以捕获这些异常，然后进行重试或其他操作以保证程序运行不会意外终止。
+
+- parse：一个工具模块。提供了许多 URL 的处理方法，例如拆分、解析、合并等。
+
+- robotparser：主要用来识别网站的 robots.txt 文件，然后判断哪些网站可以爬，哪些网站不可以，它其实用得比较少。
+
+
+
+
+
+### 2.2 requests的使用
+
+
+
+
+
+### 2.3 正则表达式
+
+
+
+
+
+### 2.4 httpx的使用
+
+
+
+### 2.5 案例
+
+
 
