@@ -1,86 +1,667 @@
-## [廖雪峰Python教程](http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000)学习笔记
+## 廖雪峰Python教程学习笔记
 
-### 0 简介
 
-- 缺点
-    + 速度慢
-    + 是代码不能加密
 
-- Python解释器
-    + CPython
-    + IPython
-    + PyPy
-    + Jython
-- 文本编辑器
-    + Word保存的不是纯文本文件，而记事本会自作聪明地在文件开始的地方加上几个特殊字符（UTF-8 BOM）
-- 直接运行py文件
-    + `#!/usr/bin/env python`  `$ chmod a+x hello.py`
-- Python的交互模式和直接运行.py文件的区别  
-    + 交互模式： 启动Python解释器，等待输入，一行一行的解释
-    + 直接运行： 启动了Python解释器，然后一次性把.py文件的源代码给执行了
-- 输入和输出
-    + `print`
-    + `raw_input`   
+[Python教程 - 廖雪峰的官方网站 (liaoxuefeng.com)](https://www.liaoxuefeng.com/wiki/1016959663602400)
 
-### 1 Python基础
+## 0 简介
 
-- 自然语言在不同的语境下有不同的理解，而计算机要根据编程语言执行任务，就必须保证编程语言写出的程序决不能有歧义
-- `#` 是注释，其他每一行都是一个语句，当语句以冒号“:”结尾时，缩进的语句视为代码块。
-- Python程序是大小写敏感的
-- 数据类型
-    + 用r''表示''内部的字符串默认不转义
+C语言是可以用来编写操作系统的贴近硬件的语言，所以，C语言适合开发那些追求运行速度、充分发挥硬件性能的程序。而Python是用来编写应用程序的高级编程语言。
 
-            >>> print '\\\t\\'
-            \       \
-            >>> print r'\\\t\\'
-            \\\t\\
+当你用一种语言开始作真正的软件开发时，你除了编写代码外，还需要很多基本的已经写好的现成的东西，来帮助你加快开发进度。比如说，要编写一个电子邮件客户端，如果先从最底层开始编写网络协议相关的代码，那估计一年半载也开发不出来。高级编程语言通常都会提供一个比较完善的基础代码库，让你能直接调用，比如，针对电子邮件协议的SMTP库，针对桌面环境的GUI库，在这些已有的代码库的基础上开发，一个电子邮件客户端几天就能开发出来。
 
-    + 多行字符串 '''...'''
-    + True  False
-    + 空值 `None`
-    + 常量 没有
-- 字符串和编码
-    + ASCII、Unicode和UTF-8
-    + 在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。  
-        用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件：  
-        ![](../images/1.1.png)  
-        浏览网页的时候，服务器会把动态生成的Unicode内容转换为UTF-8再传输到浏览器：  
-        ![](../images/1.2.png)  
-    + Python的字符串*
-        - `ord('A')`  `chr(65)`
-        - `len()`
+Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。
 
-    + 格式化
-        - 类似于C语言 ： `'Hi, %s, you have $%d.' % ('Michael', 1000000)`
-- 使用list和tuple
-    + list
-        * `classmates = ['Michael', 'Bob', 'Tracy']`
-        * `classmates[-1]`
-        * `classmates.append('Adam')`
-        * `classmates.insert(1, 'Jack')`
-        * `classmates.pop()`    `classmates.pop(1)`
-    + tuple tuple一旦初始化就不能修改
-        - 只有1个元素的tuple定义时必须加一个逗号,，来消除歧义 `t = (2)`
-        - 在tuple中放入list，这样看上去就能修改tuple  `tt = ("a", "b", [4,5,9])`
-- 条件判断和循环
-    + `if elif else`
-    + `for x in ...`
-    + `range()`
-    + raw_input()读取的内容永远以字符串的形式返回
-- 使用dict和set
-    + dict 
+除了内置的库外，Python还有大量的第三方库，也就是别人开发的，供你直接使用的东西。当然，如果你开发的代码通过很好的封装，也可以作为第三方库给别人使用。
 
-            d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
-            d['Michael']
-            d.get('Thomas')     # None
-            d.get('Thomas', -1) # -1
-            d.pop('Bob')
+许多大型网站就是用Python开发的，例如YouTube、[Instagram](http://instagram.com/)，还有国内的[豆瓣](http://www.douban.com/)。很多大公司，包括Google、Yahoo等，甚至[NASA](http://www.nasa.gov/)（美国航空航天局）都大量地使用Python。
 
-    + 和list比较，dict有以下几个特点：
-        * 查找和插入的速度极快，不会随着key的增加而增加；
-        * 需要占用大量的内存，内存浪费多。
+龟叔给Python的定位是“优雅”、“明确”、“简单”，所以Python程序看上去总是简单易懂，初学者学Python，不但入门容易，而且将来深入下去，可以编写那些非常非常复杂的程序。
 
-### 2 函数
+### Python适合开发哪些类型的应用呢？
+
+首选是网络应用，包括网站、后台服务等等；
+
+其次是许多日常需要的小工具，包括系统管理员需要的脚本任务等等；
+
+另外就是把其他语言开发的程序再包装起来，方便使用。
+
+### 缺点
+
+1. 速度慢
+
+但是大量的应用程序不需要这么快的运行速度，因为用户根本感觉不出来。例如开发一个下载MP3的网络应用程序，C程序的运行时间需要0.001秒，而Python程序的运行时间需要0.1秒，慢了100倍，但由于网络更慢，需要等待1秒，你想，用户能感觉到1.001秒和1.1秒的区别吗？这就好比F1赛车和普通的出租车在北京三环路上行驶的道理一样，虽然F1赛车理论时速高达400公里，但由于三环路堵车的时速只有20公里，因此，作为乘客，你感觉的时速永远是20公里。
+
+2. 是代码不能加密
+
+如果要发布你的Python程序，实际上就是发布源代码，这一点跟C语言不同，C语言不用发布源代码，只需要把编译后的机器码（也就是你在Windows上常见的xxx.exe文件）发布出去。要从机器码反推出C代码是不可能的，所以，凡是编译型的语言，都没有这个问题，而解释型的语言，则必须把源码发布出去。
+
+这个缺点仅限于你要编写的软件需要卖给别人挣钱的时候。好消息是目前的互联网时代，靠卖软件授权的商业模式越来越少了，靠网站和移动应用卖服务的模式越来越多了，后一种模式不需要把源码给别人。
+
+### 安装Python
+
+
+
+
+
+### Python解释器
+
++ [CPython](https://github.com/python/cpython)。Python3官方默认的
++ IPython
+
+基于CPython，只是在交互方式上有所增强。
+
+CPython用`>>>`作为提示符，而IPython用`In [序号]:`作为提示符。
+
++ PyPy
+
+PyPy采用[JIT技术](http://en.wikipedia.org/wiki/Just-in-time_compilation)，对Python代码进行动态编译（注意不是解释），所以可以显著提高Python代码的执行速度。
+
++ Jython，运行在Java平台上的Python解释器，可以直接把Python代码编译成Java字节码执行。
+
+
+
+### 第一个Python程序
+
+#### 文本编辑器
+
+Word保存的不是纯文本文件，而记事本会自作聪明地在文件开始的地方加上几个特殊字符（UTF-8 BOM）
+
+#### 直接运行py文件
+
+```python
+#!/usr/bin/env python3
+
+print('hello, world')
+```
+
+`$ chmod a+x hello.py`
+
+Python的交互模式和直接运行.py文件的区别  
++ 交互模式： 启动Python解释器，等待输入，一行一行的解释
++ 直接运行： 启动了Python解释器，然后一次性把.py文件的源代码给执行了
+
+#### 输入和输出
+
++ 输出`print()`
+
+```python
+>>> print('The quick brown fox', 'jumps over', 'the lazy dog')
+The quick brown fox jumps over the lazy dog
+
+>>> print('100 + 200 =', 100 + 200)
+100 + 200 = 300
+```
+
+- 输入`input()`
+
+```python
+>>> name = input()
+andy
+```
+
+
+
+ 
+
+## 1 Python基础
+
+自然语言在不同的语境下有不同的理解，而计算机要根据编程语言执行任务，就必须保证编程语言写出的程序决不能有歧义
+
+`#` 是注释，其他每一行都是一个语句，当语句以冒号“:”结尾时，缩进的语句视为代码块。
+
+Python程序是大小写敏感的
+
+### 数据类型
+
+#### 整数
+
+`1`，`100`，`-8080`，`0`
+
+`0xff00`，`0xa5b4c3d2`
+
+`10_000_000_000`和`10000000000` ，十六进制数也可以写成`0xa1b2_c3d4`
+
+#### 浮点数
+
+`1.23`，`3.14`，`-9.01`
+
+对于很大或很小的浮点数，就必须用科学计数法表示，把10用e替代，1.23x109就是`1.23e9`，或者`12.3e8`，0.000012可以写成`1.2e-5`，等等。
+
+#### 字符串
+
+如果字符串内部既包含`'`又包含`"` 可以用转义字符`\`来标识，比如：
+
+```python
+'I\'m \"OK\"!'
+```
+
+用`r''`表示''内部的字符串默认不转义
+
+```python
+>>> print '\\\t\\'
+\       \
+>>> print r'\\\t\\'
+\\\t\\
+```
+
+多行字符串 `'''...'''`
+
+```python
+>>> print('''line1
+    line2
+    line3''')
+line1
+line2
+line3
+```
+
+#### 布尔值
+
+`True`  `False`
+
+#### 空值
+
+ `None`
+
+### 变量
+
+变量在程序中就是用一个变量名表示了，变量名必须是大小写英文、数字和`_`的组合，且不能用数字开头
+
+> 变量本身类型不固定的语言称之为*动态语言*，与之对应的是*静态语言*。静态语言在定义变量时必须指定变量类型，如果赋值的时候类型不匹配，就会报错。例如Java是静态语言。
+
+```python
+a = 'ABC'
+b = a
+a = 'XYZ'
+print(b)  # ABC 
+```
+
+
+
+常量
+
+> `/`
+>
+> `//`  地板除，两个整数的除法仍然是整数
+
+
+
+### 字符串和编码
+
+ASCII、Unicode、UTF-8（“可变长编码”）
+
+![](images/image-20240414170650648.png)
+
+UTF-8编码有一个额外的好处，就是ASCII编码实际上可以被看成是UTF-8编码的一部分，所以，大量只支持ASCII编码的历史遗留软件可以在UTF-8编码下继续工作。
+
+
+
+在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。 
+用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件：  
+
+![](images/image-20240414170804272.png)
+
+浏览网页的时候，服务器会把动态生成的Unicode内容转换为UTF-8再传输到浏览器： 
+![](images/image-20240414170825785.png)
+
+#### Python的字符串
+
+Python3中，字符串是以Unicode编码的，也就是说，Python的字符串支持多语言。`str`
+
+```python
+>>> print('包含中文的str')
+包含中文的str
+
+>>> ord('A')
+65
+>>> ord('中')
+20013
+>>> chr(66)
+'B'
+>>> chr(25991)
+'文'
+
+>>> '\u4e2d\u6587'
+'中文'
+```
+
+如果要在网络上传输，或者保存到磁盘上，就需要把`str`变为以字节为单位的`bytes`（用带`b`前缀的单引号或双引号表示）：
+
+```python
+x = b'ABC'
+```
+
+`bytes`的每个字符都只占用一个字节。🔖
+
+以Unicode表示的`str`通过`encode()`方法可以编码为指定的`bytes`，例如：
+
+```python
+>>> 'ABC'.encode('ascii')
+b'ABC'
+>>> '中文'.encode('utf-8')
+b'\xe4\xb8\xad\xe6\x96\x87'
+>>> '中文'.encode('ascii')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: ordinal not in range(128)
+```
+
+纯英文的`str`可以用`ASCII`编码为`bytes`，内容是一样的，含有中文的`str`可以用`UTF-8`编码为`bytes`。含有中文的`str`无法用`ASCII`编码，因为中文编码的范围超过了`ASCII`编码的范围，Python会报错。
+
+在`bytes`中，无法显示为ASCII字符的字节，用`\x##`显示。
+
+反过来，如果我们从网络或磁盘上读取了字节流，那么读到的数据就是`bytes`。要把`bytes`变为`str`，就需要用`decode()`方法：
+
+```python
+>>> b'ABC'.decode('ascii')
+'ABC'
+>>> b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8')
+'中文'
+```
+
+如果`bytes`中包含无法解码的字节，`decode()`方法会报错：
+
+```python
+>>> b'\xe4\xb8\xad\xff'.decode('utf-8')
+Traceback (most recent call last):
+  ...
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 3: invalid start byte
+```
+
+如果`bytes`中只有一小部分无效的字节，可以传入`errors='ignore'`忽略错误的字节：
+
+```python
+>>> b'\xe4\xb8\xad\xff'.decode('utf-8', errors='ignore')
+'中'
+```
+
+
+
+要计算`str`包含多少个**字符**，可以用`len()`函数：
+
+```python
+>>> len('ABC')
+3
+>>> len('中文')
+2
+```
+
+`len()`函数计算的是`str`的字符数，如果换成`bytes`，`len()`函数就计算字节数：
+
+```python
+>>> len(b'ABC')
+3
+>>> len(b'\xe4\xb8\xad\xe6\x96\x87')
+6
+>>> len('中文'.encode('utf-8'))
+6
+```
+
+
+
+> 在操作字符串时，我们经常遇到`str`和`bytes`的互相转换。为了避免乱码问题，应当始终坚持使用UTF-8编码对`str`和`bytes`进行转换。
+
+
+
+由于Python源代码也是一个文本文件，所以，当你的源代码中包含中文的时候，在保存源代码时，就需要务必指定保存为UTF-8编码。当Python解释器读取源代码时，为了让它按UTF-8编码读取，我们通常在文件开头写上这两行：
+
+```python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+```
+
+第一行注释是为了告诉Linux/OS X系统，这是一个Python可执行程序，Windows系统会忽略这个注释；
+
+第二行注释是为了告诉Python解释器，按照UTF-8编码读取源代码，否则，你在源代码中写的中文输出可能会有乱码。
+
+
+
+申明了UTF-8编码并不意味着你的`.py`文件就是UTF-8编码的，必须并且要确保文本编辑器正在使用UTF-8 without BOM编码：🔖
+
+![set-encoding-in-notepad++](images/1008802356788736.png)
+
+#### 格式化
+
+##### %
+
+类似于C语言 ： `'Hi, %s, you have $%d.' % ('Michael', 1000000)`
+
+```python
+>>> 'Hello, %s' % 'world'
+'Hello, world'
+>>> 'Hi, %s, you have $%d.' % ('Michael', 1000000)
+'Hi, Michael, you have $1000000.'
+```
+
+```python
+print('%2d-%02d' % (3, 1))
+print('%.2f' % 3.1415926)
+```
+
+在字符串内部，`%s`表示用字符串替换，`%d`表示用整数替换，`%f`表示浮点数，`%x`表示十六进制整数。
+
+有几个`%?`占位符，后面就跟几个变量或者值，顺序要对应好。如果只有一个`%?`，括号可以省略。
+
+不太确定应该用什么，`%s`永远起作用，它会把任何数据类型转换为字符串。
+
+用`%%`来表示一个作为普通字符的`%`。
+
+##### format()
+
+传入的参数依次替换字符串内的占位符`{0}`、`{1}`……，这种方式写起来比%要麻烦得多：
+
+```python
+>>> 'Hello, {0}, 成绩提升了 {1:.1f}%'.format('小明', 17.125)
+'Hello, 小明, 成绩提升了 17.1%'
+```
+
+##### f-string
+
+使用以`f`开头的字符串，称之为`f-string`
+
+```python
+>>> r = 2.5
+>>> s = 3.14 * r ** 2
+>>> print(f'The area of a circle with radius {r} is {s:.2f}')
+The area of a circle with radius 2.5 is 19.62
+```
+
+
+
+
+
+```python
+# -*- coding: utf-8 -*-
+
+s1 = 72
+s2 = 85
+
+r = (s2-s1)/s1*100
+print('小明的成绩提升了%.1f%%' % r)
+```
+
+
+
+### 使用list和tuple
+
+#### list
+
+list是一种可变的有序的集合，可以随时添加和删除其中的元素。
+
+```python
+>>> classmates = ['Michael', 'Bob', 'Tracy']
+>>> classmates
+['Michael', 'Bob', 'Tracy']
+>>> len(classmates)
+3
+>>> classmates[0]
+'Michael'
+>>> classmates[1]
+'Bob'
+>>> classmates[2]
+'Tracy'
+>>> classmates[3]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: list index out of range
+>>> classmates[-1]
+'Tracy'
+>>> classmates.append('Adam')
+>>> classmates
+['Michael', 'Bob', 'Tracy', 'Adam']
+>>> classmates.insert(1, 'Jack')
+>>> classmates
+['Michael', 'Jack', 'Bob', 'Tracy', 'Adam']
+>>> classmates.pop()
+'Adam'
+>>> classmates
+['Michael', 'Jack', 'Bob', 'Tracy']
+>>> classmates.pop(1)   # 删除指定位置的元素
+'Jack'
+>>> classmates
+['Michael', 'Bob', 'Tracy']
+>>> classmates[1] = 'Sarah'
+>>> classmates
+['Michael', 'Sarah', 'Tracy']
+```
+
+list里面的元素的数据类型也可以不同，也可以是另一个list。
+
+```python
+>>> L = ['Apple', 123, True]
+>>> s = ['python', 'java', ['asp', 'php'], 'scheme']
+>>> s[2][1]
+'php'
+```
+
+
+
+#### tuple 
+
+另一种有序列表叫元组：tuple。tuple和list非常类似，但是tuple一旦初始化就不能修改。
+
+```
+>>> classmates = ('Michael', 'Bob', 'Tracy')
+```
+
+> 不可变的tuple有什么意义？因为tuple不可变，所以代码更安全。如果可能，能用tuple代替list就尽量用tuple。
+
+```python
+>>> t = (1,)   # wei避免歧义，一个元素必须加一个逗号
+```
+
+
+
+```python
+>>> t = ('a', 'b', ['A', 'B'])
+>>> t[2][0] = 'X'
+>>> t[2][1] = 'Y'
+>>> t
+('a', 'b', ['X', 'Y'])
+```
+
+
+
+### 条件判断
+
+```python
+if <条件判断1>:
+    <执行1>
+elif <条件判断2>:
+    <执行2>
+elif <条件判断3>:
+    <执行3>
+else:
+    <执行4>
+```
+
+
+
+#### 再议 input
+
+```python
+s = input('birth: ')
+birth = int(s)			# input()返回的数据类型是str，必须转换
+if birth < 2000:
+    print('00前')
+else:
+    print('00后')
+```
+
+
+
+### 模式匹配
+
+```python
+score = 'B'
+if score == 'A':
+    print('score is A.')
+elif score == 'B':
+    print('score is B.')
+elif score == 'C':
+    print('score is C.')
+else:
+    print('invalid score.')
+```
+
+如果用`match`语句改写，则改写如下：
+
+```python
+# -*- coding: utf-8 -*-
+score = 'B'
+
+match score:
+    case 'A':
+        print('score is A.')
+    case 'B':
+        print('score is B.')
+    case 'C':
+        print('score is C.')
+    case _: # _表示匹配到其他任何情况
+        print('score is ???.')
+```
+
+
+
+`match`语句除了可以匹配简单的单个值外，还可以匹配多个值、匹配一定范围，并且把匹配后的值绑定到变量：
+
+```python
+# -*- coding: utf-8 -*-
+age = 15
+
+match age:
+    case x if x < 10:			# 表示当age < 10成立时匹配，且赋值给变量x
+        print(f'< 10 years old: {x}')
+    case 10:
+        print('10 years old.')
+    case 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18:
+        print('11~18 years old.')
+    case 19:
+        print('19 years old.')
+    case _:
+        print('not sure.')
+```
+
+
+
+`match`语句还可以匹配列表:
+
+```python
+# -*- coding: utf-8 -*-
+args = ['gcc', 'hello.c', 'world.c']
+# args = ['clean']
+# args = ['gcc']
+
+match args:
+    # 如果仅出现gcc，报错:
+    case ['gcc']:
+        print('gcc: missing source file(s).')
+    # 出现gcc，且至少指定了一个文件:
+    case ['gcc', file1, *files]:  # 表示列表第一个字符串是'gcc'，第二个字符串绑定到变量file1，后面的任意个字符串绑定到*files（符号*的作用将在函数的参数中讲解），它实际上表示至少指定一个文件；
+        print('gcc compile: ' + file1 + ', ' + ', '.join(files))
+    # 仅出现clean:
+    case ['clean']:
+        print('clean')
+    case _:
+        print('invalid command.')
+```
+
+
+
+### 循环
+
+- for...in循环
+
+```python
+names = ['Michael', 'Bob', 'Tracy']
+for name in names:
+    print(name)
+    
+sum = 0
+for x in range(101):
+    sum = sum + x
+print(sum)
+```
+
+可以通过`list()`函数转换`range()`函数结果为list。
+
+- while循环
+
+
+
+- break
+
+```python
+n = 1
+while n <= 100:
+    if n > 10: # 当n = 11时，条件满足，执行break语句
+        break # break语句会结束当前循环
+    print(n)
+    n = n + 1
+print('END')
+```
+
+
+
+- continue
+
+
+
+### 使用dict和set
+
+#### dict
+
+全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度。
+
+```py
+>>> d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}
+>>> d['Michael']
+95
+```
+
+和list比较，dict有以下几个特点：
+
+1. 查找和插入的速度极快，不会随着key的增加而变慢；
+2. 需要占用大量的内存，内存浪费多。
+
+而list相反：
+
+1. 查找和插入的时间随着元素的增加而增加；
+2. 占用空间小，浪费内存很少。
+
+#### set
+
+set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。
+
+```python
+>>> s = set([1, 1, 2, 2, 3, 3])
+>>> s
+{1, 2, 3}
+>>> s.add(4)
+>>> s.remove(4)
+
+>>> s1 = set([1, 2, 3])
+>>> s2 = set([2, 3, 4])
+>>> s1 & s2
+{2, 3}
+>>> s1 | s2
+{1, 2, 3, 4}
+```
+
+set和dict的唯一区别仅在于没有存储对应的value，但是，set的原理和dict一样，所以，同样不可以放入可变对象，因为无法判断两个可变对象是否相等，也就无法保证set内部“不会有重复元素”。试试把list放入set，看看是否会报错。
+
+
+
+#### 再议不可变对象
+
+上面我们讲了，str是不变对象，而list是可变对象。
+
+
+
+对于不变对象来说，调用对象自身的任意方法，也不会改变该对象自身的内容。相反，这些方法会创建新的对象并返回，这样，就保证了不可变对象本身永远是不可变的。
+
+## 2 函数
 
 - 函数就是最基本的一种代码抽象的方式。
 - 调用函数
@@ -121,9 +702,9 @@
 
             def person(name, age, **other):
             print 'name:', name, 'age:', age, 'other:', other
-        
+            
             person('andy', 25, location="shanghai", weight="70")
-        
+            
             kw = {'city': 'Beijing', 'job': 'Engineer'}
             person('Jack', 24, **kw)
 
@@ -147,7 +728,7 @@
     + [尾调用](https://zh.wikipedia.org/wiki/%E5%B0%BE%E8%B0%83%E7%94%A8)
     + 在尾调用的情况中，电脑不需要记住尾调用的位置而可以从被调用的函数直接带着返回值返回调用函数的返回位置（相当于直接连续返回两次），尾调用消除即是在不改变当前调用栈（也不添加新的返回位置）的情况下跳到新函数的一种优化（完全不改变调用栈是不可能的，还是需要校正调用栈上形参与局部变量的信息。）
 
-### 3 高级特性
+## 3 高级特性
 
 - 切片 (list, tuple, 字符串)
     + `L[:10:2]`    前10个数，每两个取一个
@@ -195,7 +776,7 @@
     + 函数是顺序执行，遇到return语句或者最后一行函数语句就返回。而变成generator的函数，在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行
 
 
-### 4 函数式编程
+## 4 函数式编程
 
 - 高阶函数
     + 既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。
@@ -216,7 +797,7 @@
 - 偏函数（Partial function）
     + `functools.partial`的作用就是，把一个函数的某些参数给固定住（也就是设置默认值），返回一个新的函数，调用这个新函数会更简单。
 
-### 5 模块
+## 5 模块
 
 - 一个.py文件就称之为一个模块（Module）
     + [内置函数](https://docs.python.org/2/library/functions.html)
@@ -261,7 +842,7 @@
   
     + Python提供了__future__模块，把下一个新版本的特性导入到当前版本，于是我们就可以在当前版本中测试一些新版本的特性。
 
-### 6 面向对象编程
+## 6 面向对象编程
 
 - 对比
     + 面向过程的程序设计把计算机程序视为一系列的命令集合，即一组函数的顺序执行。为了简化程序设计，面向过程把函数继续切分为子函数，即把大块函数通过切割成小块函数来降低系统的复杂度。
@@ -285,7 +866,7 @@
         * 类似__xxx__的属性和方法在Python中都是有特殊用途的.如，`str`类型中有 `__len__`方法，就可以 `len('ABC')` 或 'ABC'.__len__(), 并且这里的 'ABC'必须是`str`
         * `getattr()` `setattr()` `hasattr()`
 
-### 7 面向对象高级编程
+## 7 面向对象高级编程
 
 - 使用__slots__
     + 动态绑定
@@ -307,7 +888,7 @@
     + `type()`
     + metaclass
 
-### 8 错误、调试和测试
+## 8 错误、调试和测试
 
 - 错误 
     + `try...except...finally...`   可以跨越多层
@@ -340,7 +921,7 @@
 - 文档测试
 
 
-### 9 IO编程
+## 9 IO编程
 
 >同步IO  CPU等着
 >异步IO  CPU不等待      回调模式    轮询模式
@@ -408,7 +989,7 @@
         * 只能用于Python，不同版本的Python彼此都不兼容
     + JSON 
 
-### 10 进程和线程
+## 10 进程和线程
 
 - 概述
     + 表面上看，每个任务都是交替执行的，但是，由于CPU的执行速度实在是太快了，我们感觉就像所有任务都在同时执行一样。
@@ -424,7 +1005,7 @@
 ？？ ImportError: No module named multiprocession
 
 
-### 11 正则表达式
+## 11 正则表达式
 
 - 基础
     * `\d`
@@ -438,7 +1019,7 @@
     
       
 
-### 12 常用内建模块
+## 12 常用内建模块
 
 - collections
     + namedtuple    `namedtuple('名称', [属性list])`
@@ -474,13 +1055,13 @@
     + HTML本质上是XML的子集，但是HTML的语法没有XML那么严格，所以不能用标准的DOM或SAX来解析HTML。
 
 
-### 13 常用第三方模块
+## 13 常用第三方模块
 
 - 基本上，所有的第三方模块都会在[PyPI - the Python Package Index](https://pypi.python.org/pypi)上注册，只要找到对应的模块名字，即可用easy_install或者pip安装
 
 - PIL   ？？
 
-### 14 图形界面
+## 14 图形界面
 
 - Tk（Tkinter）: 内置的， 调用操作系统提供的本地GUI接口
 
@@ -488,7 +1069,7 @@
 - Qt
 - GTK
 
-### 15 网络编程
+## 15 网络编程
 
 - 网络通信是两台计算机上的两个进程之间的通信
 - TCP/IP简介
@@ -502,7 +1083,7 @@
     
 - UDP编程
 
-### 16 电子邮件
+## 16 电子邮件
 
 - 概念  
 MUA：Mail User Agent——邮件用户代理（Outlook或者Foxmail之类的软件）  
@@ -512,7 +1093,7 @@ MDA：Mail Delivery Agent——邮件投递代理
 发邮件时，MUA和MTA使用的协议就是SMTP：Simple Mail Transfer Protocol，后面的MTA到另一个MTA也是用SMTP协议。  
 收邮件时，MUA和MDA使用的协议有两种：POP：Post Office Protocol，目前版本是3，俗称POP3；IMAP：Internet Message Access Protocol，目前版本是4，优点是不但能取邮件，还可以直接操作MDA上存储的邮件，比如从收件箱移到垃圾箱，等等。
 
-### 17 访问数据库
+## 17 访问数据库
 
 - 使用SQLite
     + Python内置了SQLite3
