@@ -236,19 +236,119 @@ Python的多进程相比多线程，运行效率在多核情况下比单核会�
 
 ## 2 基本库的使用
 
-
+有了urllib库，只需要关心请求的链接，需要传递的参数，如何设置可选的请求头，而无须深入到底层去了解到底是怎样传输和通信的。
 
 ### 2.1 urllib
 
 urllib包括四个模块：
 
-- request：这是最基本的HTTP 请求模块，可以模拟请求的发送。就像在浏览器里输人网址然后按下回车一样，只需要给库方法传入URL 以及额外的参数，就可以模拟实现发送请求的过程了。
+- `request`：这是最基本的HTTP 请求模块，可以模拟请求的发送。就像在浏览器里输人网址然后按下回车一样，只需要给库方法传入URL 以及额外的参数，就可以模拟实现发送请求的过程了。
 
-- error：异常处理模块。如果出现请求异常，那么我们可以捕获这些异常，然后进行重试或其他操作以保证程序运行不会意外终止。
+- `error`：异常处理模块。如果出现请求异常，那么我们可以捕获这些异常，然后进行重试或其他操作以保证程序运行不会意外终止。
 
-- parse：一个工具模块。提供了许多 URL 的处理方法，例如拆分、解析、合并等。
+- `parse`：一个工具模块。提供了许多 URL 的处理方法，例如拆分、解析、合并等。
 
-- robotparser：主要用来识别网站的 robots.txt 文件，然后判断哪些网站可以爬，哪些网站不可以，它其实用得比较少。
+- `robotparser`：主要用来识别网站的 robots.txt 文件，然后判断哪些网站可以爬，哪些网站不可以，它其实用得比较少。
+
+#### 1️⃣request
+
+urllib.request 模块提供了最基本的构造HTTP请求的方法，利用这个模块可以模拟浏览器的请求发起过程，同时它还具有处理授权验证 (Aut hentication )、重定向 (Redirection )、浏览器Cookie 以 及其他一些功能。
+
+##### urlopen
+
+```python
+import urllib.request
+
+url = 'http://www.python.org'
+
+response = urllib.request.urlopen(url)
+print(type(response))  # <class 'http.client.HTTPResponse'>
+```
+
+响应是一个HTTPResposne类型的对象，主要包含 read、readinto、getheader、 getheaders、fileno等方法，以及msg、version、status、reason、debuglevel 、closed等属性。
+
+- data参数
+
+
+
+- timeout参数
+
+
+
+##### Request
+
+比urlopen更强大，可以往请求中加入Headers等信息。
+
+
+
+
+
+##### 高级用法
+
+
+
+##### 验证
+
+
+
+##### 代理
+
+
+
+##### Cookie
+
+
+
+#### 2️⃣处理异常
+
+##### URLError
+
+
+
+##### HTTPError
+
+
+
+#### 3️⃣解析链接
+
+urlib库里还提供了parse模块，这个模块定义了处理URL的标准接又，例如实现URL 各部 分 的 抽取 、合 并以 及链 接转 换 。它 支持 如 下协 议 的 U R L 处 理 :f i l e 、f t p 、g o p h e r 、h d l 、h t t p 、h t t p s 、
+imap, mailto, mms, news, nntp, prospero, rsync, rtsp, rtspu, sftp, sip, sips, snews, svn, svntssh, telnet #I wais.
+
+- urlplarse
+
+
+
+- urlspit
+
+
+
+- urlunspit
+
+
+
+- urljoin
+
+
+
+- urlencod
+
+
+
+- parse_qs
+
+ 
+
+- parse_qsl
+
+
+
+- quote/unquote
+
+
+
+#### 4️⃣分析Robots协议
+
+
 
 
 
@@ -268,9 +368,47 @@ urllib包括四个模块：
 
 ### 2.4 httpx的使用
 
+HTTP/2.0
+
+
+
+
+
+
+
 
 
 ### 2.5 案例
+
+https://ssrl.scrape.centor/`
+
+
+
+
+
+## 3 网页数据的解析提取
+
+### 3.1 XPath的使用
+
+
+
+
+
+#### 3.2 Beautiful Soup的使用
+
+BeautifulSoup是Python的 一个HTML或XML的解析库
+
+
+
+
+
+
+
+### 3.3 pyquery的使用
+
+
+
+
 
 
 
