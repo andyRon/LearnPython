@@ -7,7 +7,6 @@
 *.dat
 *.txt
 *.temp
-*.png
 .*
 
 test/
