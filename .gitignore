@@ -15,3 +15,8 @@ build/
 captcha.jpeg
 
 MYPLAN\.md
+
+
+*.wav
+*.mp3
+*.mp4

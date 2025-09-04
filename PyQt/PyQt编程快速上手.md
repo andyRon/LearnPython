@@ -452,13 +452,283 @@ QMainWindow继承于QWidget。如果说把QWidget比作一间毛坯房，那QMai
 
 ## 5 Qt Designer
 
+在PyQt中，我们既可以使用代码来设计界面，也可以用Qt Designer来快速完成设计。Qt Designer能够让我们以可视化拖曳的方式来摆放控件，而且可以立即看到设计效果，没有编程经验的人也可以快速上手。界面设计完毕后，我们可以将它保存到格式为.ui的文件中，并利用pyuic5工具将其转换成.py文件，这样就能够在代码中继续给界面添加其他功能了。
+
+### 5.1 安装与配置
+
+https://build-system.fman.io/qt-designer-download
+
+
+
+#### 在PyCharm中配置设计师
+
+![](images/image-20250904093942619.png)
+
+pyuic5 是 PyQt5 工具包中一个非常实用的命令行工具，主要用于将 Qt Designer 创建的 `.ui` 文件（XML格式）转换为可直接在 Python 中使用的 `.py` 文件。
+
+配置pyuic5转换工具
+
+```sh
+which pyuic5
+/opt/homebrew/bin/pyuic5
+```
+
+![](images/image-20250904101523398.png)
+
+“Arguments”填写“`$FileName$ -o $FileNameWithoutExtension$_ui.py`”，表示将×××.ui文件转换成×××_ui.py文件。在“Working directory”输入框中填写“`$FileDir$`”。
+
+
+
+### 5.2 了解设计师窗口中的各个部分
+
+#### 5.2.1 控件箱
+
+
+
+#### 5.2.2 对象查看器
+
+
+
+
+
+#### 5.2.3 属性编辑器
+
+
+
+#### 5.2.4 菜单栏和工具栏
+
+
+
+### 5.3 4种编辑模式
+
+#### 5.3.1 布局模式
+
+
+
+#### 5.3.2 编辑信号和槽模式
+
+
+
+#### 5.3.3 编辑伙伴关系模式
+
+
+
+#### 5.3.4 编辑Tab顺序模式
+
+
+
+### 5.4 登录框开发实战
+
+🔖
+
+
+
 
 
 ## 6 PyQt高级应用
 
+PyQt的强大不仅体现在多种多样的控件上，它还在数据库、多线程、动画和音视频等方面提供了丰富的支持。除此之外，PyQt还有自己的一套界面美化系统QSS，它能够让界面变得更美观。我们可以把PyQt看作集合了众多第三方库的功能的大型工具箱，各种工具应有尽有。
+
+### 6.1 数据库
+
+![](images/image-20250904102242684.png)
+
+#### 6.1.1 数据库连接和关闭
+
+
+
+#### 6.1.2 执行SQL语句
+
+
+
+#### 6.1.3 数据库模型
+
+##### 1.QSqlQueryModel
+
+
+
+##### 2.QSqlTableModel
+
+
+
+### 6.2 多线程
+
+在PyQt中，主线程（也可以称为UI线程）负责界面绘制和更新。当执行某些复杂且耗时的操作时，如果将执行这些操作的代码放在主线程中，界面就会出现停止响应（或卡顿）的情况。
+
+#### 6.2.1 使用QThread线程类
+
+
+
+#### 6.2.2 在线程中获取窗口数据信息
+
+
+
+
+
+### 6.3 绘图与打印
+
+#### 6.3.1 画笔类QPen
+
+
+
+#### 6.3.2 画刷类QBrush
+
+
+
+#### 6.3.3 用鼠标在窗口上绘制矩形
+
+
+
+#### 6.3.4 打印
+
+
+
+### 6.4 动画
+
+#### 6.4.1 属性动画类QPropertyAnimation
+
+
+
+
+
+#### 6.4.2 串行动画组类QSequentialAnimationGroup
+
+
+
+#### 6.4.3 并行动画组类QParallelAnimationGroup
+
+
+
+#### 6.4.4 时间轴类QTimeLine
+
+
+
+### 6.5 音频和视频
+
+#### 6.5.1 声音类QSound
+
+
+
+#### 6.5.2 音效类QSoundEffect
+
+
+
+#### 6.5.3 媒体播放机类QMediaPlayer
+
+
+
+### 6.6 网页交互
+
+
+
+#### 6.6.1 了解QWebEngineView
+
+
+
+#### 6.6.2 制作一款简单的浏览器
+
+
+
+### 6.7 网络应用
+
+#### 6.7.1 QUdpSocket
+
+
+
+#### 6.7.2 QTcpSocket和QTcpServer
+
+
+
+### 6.8 QSS
+
+QSS是一种用来自定义控件外观的强大机制。它的语法跟CSS非常相似。
+
+窗口或控件可以通过调用setStyleSheet()方法来设置外观样式，该方法接收一个QSS样式字符串，样式内容可以保存在.qss或者.css格式的文件中。
+
+#### 6.8.1 安装QSS高亮插件
+
+#### 6.8.2 基本规则
+
+每个QSS样式都由选择器和声明这两部分组成，前者用来指定样式所作用的控件对象，后者用来指定样式使用的属性和值。
+
+
+
+
+
+#### 6.8.3 选择器的类型
+
+
+
+#### 6.8.4 子控制器
+
+
+
+#### 6.8.5 伪状态
+
+
+
+#### 6.8.6 QSS第三方库
+
+##### 1.Qt-Material
+
+```
+pip3 install qt-material
+```
+
+
+
+##### 2.QDarkStyleSheet
+
+```
+pip3 install qdarkstyle
+```
+
+
+
+
+
+### 6.9 国际化 🔖
+
+#### 6.9.1 使用translate()方法
+
+
+
+#### 6.9.2 制作.ts文件
+
+
+
+#### 6.9.3 使用Qt Linguist
+
+
+
+#### 6.9.4 实现语言切换功能
+
+
+
+
+
 
 
 ## 7 图形视图框架
+
+### 7.1 图形图元类QGraphicsItem
+
+#### 7.1.1 标准图元
+
+- 椭圆图元QGraphicsEllipseItem。
+- 直线图元QGraphicsLineItem。
+- 路径图元QGraphicsPathItem。
+- 图片图元QGraphicsPixmapItem。
+- 多边形图元QGraphicsPolygonItem。
+- 矩形图元QGraphicsRectItem。
+- 纯文本图元QGraphicsSimpleTextItem。
+- 富文本图元QGraphicsTextItem。
+
+
+
+#### 7.1.2 图元层级
+
+
 
 
 
