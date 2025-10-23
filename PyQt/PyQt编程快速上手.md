@@ -798,6 +798,17 @@ Nuitka会把要打包的代码编译成C语言版本，这样不仅可提升程�
 
 ## 9 可视化爬虫
 
+```
+pip3 install requests
+pip3 install parsel
+```
+
+
+
+https://quotes.toscrape.com/
+
+
+
 
 
 ## 10 贪吃蛇
